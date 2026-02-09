@@ -13,7 +13,9 @@ const __dirname = path.resolve();
 
 const PORT = ENV.PORT || 3000;
 
-app.use(express.json({ limit: "5mb" })); // req.body
+// Middleware order is critical for CORS
+app.use(cookieParser());
+app.use(express.json({ limit: "5mb" }));
 
 // CORS configuration for cross-site authentication
 app.use(cors({
@@ -26,7 +28,8 @@ app.use(cors({
   optionsSuccessStatus: 204
 }));
 
-app.use(cookieParser());
+// Explicit preflight handler for all routes
+app.options('*', cors());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
