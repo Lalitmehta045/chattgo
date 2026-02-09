@@ -16,12 +16,8 @@ export const generateToken = (userId, res) => {
     httpOnly: true, // prevent XSS attacks: cross-site scripting
     secure: ENV.NODE_ENV !== "development",
     path: '/', // Ensure cookie is sent with all requests
+    sameSite: ENV.NODE_ENV === "development" ? "lax" : "none", // "none" required for cross-site cookies in production
   };
-
-  // In development, don't set sameSite to allow network IP access
-  if (ENV.NODE_ENV !== "development") {
-    cookieOptions.sameSite = "lax";
-  }
 
   res.cookie("jwt", token, cookieOptions);
 
