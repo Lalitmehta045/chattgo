@@ -15,7 +15,7 @@ const PORT = ENV.PORT || 3000;
 
 app.use(express.json({ limit: "5mb" })); // req.body
 app.use(cors({
-  origin: ["http://localhost:5173", "http://10.76.30.15:5173", "https://chatgo.netlify.app"],
+  origin: ["http://localhost:5173", "http://10.76.30.15:5173", "https://chattgoo.netlify.app"],
   credentials: true
 }));
 app.use(cookieParser());
