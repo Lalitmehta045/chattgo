@@ -28,9 +28,6 @@ app.use(cors({
   optionsSuccessStatus: 204
 }));
 
-// Explicit preflight handler for all routes
-app.options('*', cors());
-
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 
