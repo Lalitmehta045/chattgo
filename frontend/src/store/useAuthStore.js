@@ -5,7 +5,7 @@ import { io } from "socket.io-client";
 
 const BASE_URL = import.meta.env.MODE === "development"
   ? "http://10.76.30.15:3000"
-  : "https://chattgo-p6sr.onrender.com";
+  : "https://chattgo.onrender.com";
 
 export const useAuthStore = create((set, get) => ({
   authUser: null,
