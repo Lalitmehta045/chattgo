@@ -14,9 +14,9 @@ export const generateToken = (userId, res) => {
   const cookieOptions = {
     maxAge: 7 * 24 * 60 * 60 * 1000, // MS
     httpOnly: true, // prevent XSS attacks: cross-site scripting
-    secure: ENV.NODE_ENV !== "development",
+    secure: true, // Always true for production (HTTPS required)
     path: '/', // Ensure cookie is sent with all requests
-    sameSite: ENV.NODE_ENV === "development" ? "lax" : "none", // "none" required for cross-site cookies in production
+    sameSite: "none", // Required for cross-site cookies (Vercel → Render)
   };
 
   res.cookie("jwt", token, cookieOptions);
